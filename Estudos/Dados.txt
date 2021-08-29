@@ -1,0 +1,8 @@
+banco:fjekcj2k_ponto_certo
+
+usuario:fjekcj2k_ponto_certo
+senha: p@nt@c&rt@
+
+API
+
+https://gustavofernandes.dev.br/api:65021

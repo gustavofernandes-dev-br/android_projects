@@ -1,0 +1,34 @@
+Cadastro de cliente
+
+1 - Crud
+Reclycler View
+Formulário Cliente
+	Nome
+	Tipo J ou F
+	CPF / CGC
+	Email
+	DDD
+	Telefone
+	Cadastro
+	Atualizacao
+	Nascimento
+Lista mocada
+
+2 - Persistencia com Room (Sql Lite)
+	Criar duas Migrations
+	Excluido data cadastro
+	Adicionando Endereço Relacionado
+		CEP (Busca Cep)
+		Endereco
+		Numero
+		Complemento
+		Bairro
+		Cidade + IBGE
+		UF + IBGE
+		
+3 - Criando/Integrando com API(Node)
+	Retrofit com LoggingInterceptor
+	
+	
+	
+			
