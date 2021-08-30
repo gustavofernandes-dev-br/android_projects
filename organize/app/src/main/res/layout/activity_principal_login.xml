@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.PrincipalLoginActivity"
+    android:gravity="center"
+    android:orientation="vertical">
+    <androidx.appcompat.widget.AppCompatImageView
+        android:background="@drawable/logo"
+        android:layout_width="250sp"
+        android:layout_marginBottom="30dp"
+        android:layout_height="90sp"/>
+    <TextView
+        android:text="Seja bem vindo!"
+        android:textSize="22dp"
+        android:textStyle="bold"
+        android:textColor="@color/PrimaryApp"
+        android:layout_width="wrap_content"
+        android:layout_marginBottom="30dp"
+        android:layout_height="wrap_content"/>
+    <com.google.android.material.textfield.TextInputEditText
+        android:hint="E-mail"
+        android:padding="15dp"
+        android:layout_margin="5dp"
+        android:inputType="textEmailAddress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <com.google.android.material.textfield.TextInputEditText
+        android:hint="Senha"
+        android:padding="15dp"
+        android:layout_margin="5dp"
+        android:inputType="textPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <LinearLayout
+        android:layout_marginTop="15dp"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button 
+            android:layout_margin="5dp"
+            android:text="Cadastrar"
+            android:layout_weight="50"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <Button
+            android:layout_margin="5dp"
+            android:text="Entrar"
+            android:layout_weight="50"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+
+
+</LinearLayout>
