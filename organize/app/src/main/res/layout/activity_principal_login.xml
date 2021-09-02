@@ -45,6 +45,28 @@
         android:hint="Senha"
         android:inputType="textPassword"
         android:padding="15dp" />
+    <Switch
+        android:id="@+id/login_sw_exibir_senha"
+        android:gravity="start"
+        android:layout_gravity="start"
+        android:layout_margin="15dp"
+        android:text="Exibir senha"
+        android:thumbTint="@color/switch_cor_thumb"
+        android:trackTint="@color/switch_cor_track"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/login_txt_alerta"
+        android:layout_margin="10dp"
+        android:minLines="2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Usuário ou senha invalidos"
+        android:textColor="@color/design_default_color_error"
+        android:visibility="invisible"
+        tools:visibility="visible"
+        />
 
     <LinearLayout
 

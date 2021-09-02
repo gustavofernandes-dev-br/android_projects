@@ -27,6 +27,7 @@
         android:drawableLeft="@drawable/ic_pessoa_usuario"
         android:drawablePadding="5dp"
         android:inputType="text"
+        android:maxLength="300"
         android:hint="Nome"
         android:padding="15dp" />
 
@@ -40,6 +41,7 @@
         android:drawablePadding="5dp"
         android:hint="E-mail"
         android:inputType="textEmailAddress"
+        android:maxLength="200"
         android:padding="15dp" />
 
     <com.google.android.material.textfield.TextInputEditText
@@ -52,7 +54,9 @@
         android:drawablePadding="5dp"
         android:hint="Senha"
         android:inputType="textPassword"
-        android:padding="15dp" />
+        android:padding="15dp"
+        android:maxLength="30"
+        />
 
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/cadastro_usuario_txt_confirmar_senha"
@@ -63,6 +67,7 @@
         android:drawableLeft="@drawable/ic_login_key_24"
         android:drawablePadding="5dp"
         android:hint="Repetir Senha"
+        android:maxLength="30"
         android:inputType="textPassword"
         android:padding="15dp" />
 
@@ -72,12 +77,25 @@
         android:layout_gravity="start"
         android:layout_margin="15dp"
         android:text="Exibir senha"
-        android:shadowColor="@color/PrimaryApp"
+        android:thumbTint="@color/switch_cor_thumb"
+        android:trackTint="@color/switch_cor_track"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
+    <TextView
+        android:id="@+id/cadastro_usuario_txt_alerta"
+        android:layout_margin="10dp"
+        android:minLines="2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="As senhas não são iguais"
+        android:textColor="@color/design_default_color_error"
+        android:visibility="invisible"
+        tools:visibility="visible"
+        />
+
         <Button
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="10dp"
             android:layout_marginRight="5dp"
             android:layout_marginLeft="5dp"
             android:id="@+id/cadastro_usuario_btn_cadastrar"

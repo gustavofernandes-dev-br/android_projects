@@ -13,8 +13,12 @@
             android:name=".PrincipalActivity"
             android:label="@string/title_activity_principal"
             android:theme="@style/Theme.Organize.NoActionBar"></activity>
-        <activity android:name=".activity.CadastroUsuarioActivity" />
-        <activity android:name=".activity.PrincipalLoginActivity">
+        <activity android:name=".activity.CadastroUsuarioActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name=".activity.PrincipalLoginActivity"
+            android:screenOrientation="portrait"
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
