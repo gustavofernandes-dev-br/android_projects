@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".activity.PrincipalLoginActivity"
     android:gravity="center"
+
     android:orientation="vertical">
     <androidx.appcompat.widget.AppCompatImageView
         android:background="@drawable/logo"
@@ -22,8 +23,10 @@
         android:layout_height="wrap_content"/>
 
     <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/login_txt_email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/edittext_campo_padrao"
         android:layout_margin="5dp"
         android:drawableLeft="@drawable/ic_login_email_24"
         android:drawablePadding="5dp"
@@ -32,8 +35,10 @@
         android:padding="15dp" />
 
     <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/login_txt_senha"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/edittext_campo_padrao"
         android:layout_margin="5dp"
         android:drawableLeft="@drawable/ic_login_key_24"
         android:drawablePadding="5dp"
@@ -42,23 +47,36 @@
         android:padding="15dp" />
 
     <LinearLayout
+
         android:layout_marginTop="15dp"
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="60dp">
 
-        <Button
-            style="@style/Button2"
-            android:layout_weight="50"
-            android:textStyle="bold" />
 
         <Button
-            android:layout_weight="50"
-            android:text="Entrar"
-            style="@style/Button"
+            android:id="@+id/login_btn_cadastrar"
+            android:onClick="NovoCadastro"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/botao_padrao2"
+            android:textColor="@color/PrimaryApp"
+            android:text="Cadastrar"
+            android:layout_weight="1"
+            android:layout_margin="5dp"
 
             />
-
+        <Button
+            android:id="@+id/login_btn_entrar"
+            android:onClick="FazerLogin"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/botao_padrao"
+            android:textColor="@color/white"
+            android:text="Entrar"
+            android:layout_weight="1"
+            android:layout_margin="5dp"
+            />
     </LinearLayout>
 
 

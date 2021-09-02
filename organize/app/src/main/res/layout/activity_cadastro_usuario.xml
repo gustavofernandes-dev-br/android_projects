@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    tools:context=".activity.CadastroUsuarioActivity">
+
+    <TextView
+        android:text="Cadastro de usuário"
+        android:textSize="22dp"
+        android:textStyle="bold"
+        android:textColor="@color/PrimaryApp"
+        android:layout_width="wrap_content"
+        android:layout_marginBottom="30dp"
+        android:layout_height="wrap_content"/>
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/cadastro_usuario_txt_nome"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:background="@drawable/edittext_campo_padrao"
+        android:drawableLeft="@drawable/ic_pessoa_usuario"
+        android:drawablePadding="5dp"
+        android:inputType="text"
+        android:hint="Nome"
+        android:padding="15dp" />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/cadastro_usuario_txt_email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/edittext_campo_padrao"
+        android:layout_margin="5dp"
+        android:drawableLeft="@drawable/ic_login_email_24"
+        android:drawablePadding="5dp"
+        android:hint="E-mail"
+        android:inputType="textEmailAddress"
+        android:padding="15dp" />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/cadastro_usuario_txt_senha"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/edittext_campo_padrao"
+        android:layout_margin="5dp"
+        android:drawableLeft="@drawable/ic_login_key_24"
+        android:drawablePadding="5dp"
+        android:hint="Senha"
+        android:inputType="textPassword"
+        android:padding="15dp" />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/cadastro_usuario_txt_confirmar_senha"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/edittext_campo_padrao"
+        android:layout_margin="5dp"
+        android:drawableLeft="@drawable/ic_login_key_24"
+        android:drawablePadding="5dp"
+        android:hint="Repetir Senha"
+        android:inputType="textPassword"
+        android:padding="15dp" />
+
+    <Switch
+        android:id="@+id/cadastro_usuario_sw_exibir_senha"
+        android:gravity="start"
+        android:layout_gravity="start"
+        android:layout_margin="15dp"
+        android:text="Exibir senha"
+        android:shadowColor="@color/PrimaryApp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+        <Button
+            android:layout_marginTop="30dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginLeft="5dp"
+            android:id="@+id/cadastro_usuario_btn_cadastrar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/botao_padrao"
+            android:textColor="@color/white"
+            android:text="Cadastrar"
+            android:onClick="Cadatrar"
+             />
+
+
+</LinearLayout>
