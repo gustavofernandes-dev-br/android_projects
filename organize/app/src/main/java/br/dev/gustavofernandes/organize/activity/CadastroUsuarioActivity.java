@@ -4,8 +4,10 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.text.InputType;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -26,13 +28,34 @@ public class CadastroUsuarioActivity extends AppCompatActivity {
     Button btnCadastrar;
     TextInputEditText txtNome, txtSenha, txtEmail, txtConfirmarSenha;
     Switch swExibirSenha;
+    TextView txtAlerta;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cadastro_usuario);
         CarregarControles();
+        ConfigurarEventos();
+    }
 
+    private void ConfigurarEventos() {
+        swExibirSenha.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+
+                if(swExibirSenha.isChecked())
+                {
+                    txtSenha.setInputType(InputType.TYPE_CLASS_TEXT );
+                    txtConfirmarSenha.setInputType(InputType.TYPE_CLASS_TEXT );
+                }
+                else
+                {
+                    txtSenha.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+                    txtConfirmarSenha.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+
+                }
+            }
+        });
     }
 
     private void CarregarControles() {
@@ -42,6 +65,7 @@ public class CadastroUsuarioActivity extends AppCompatActivity {
         txtConfirmarSenha = findViewById(R.id.cadastro_usuario_txt_confirmar_senha);
         swExibirSenha = findViewById(R.id.cadastro_usuario_sw_exibir_senha);
         btnCadastrar = findViewById(R.id.cadastro_usuario_btn_cadastrar);
+        txtAlerta = findViewById(R.id.cadastro_usuario_txt_alerta);
 
     }
 
