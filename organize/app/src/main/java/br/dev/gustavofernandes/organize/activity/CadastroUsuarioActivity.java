@@ -17,6 +17,8 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseUser;
 
 import br.dev.gustavofernandes.organize.R;
+import br.dev.gustavofernandes.organize.model.Usuario;
+import br.dev.gustavofernandes.organize.services.api.UsuarioService;
 import br.dev.gustavofernandes.organize.services.firebase.FirebaseService;
 
 public class CadastroUsuarioActivity extends AppCompatActivity {
@@ -45,27 +47,23 @@ public class CadastroUsuarioActivity extends AppCompatActivity {
 
     public void Cadatrar(View view)
     {
-        String sEmail = txtEmail.getText().toString().trim();
-        String sSenha = txtSenha.getText().toString().trim();
-        try {
-            FirebaseService.getAutenticacao()
-                    .createUserWithEmailAndPassword(sEmail,sSenha)
-                    .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                        @Override
-                        public void onComplete(@NonNull Task<AuthResult> task) {
-                            if(task.isSuccessful())
-                            {
-                                Toast.makeText(getApplicationContext(), "Usuario cadastrado com sucesso", Toast.LENGTH_SHORT).show();
-                                FirebaseUser user =  FirebaseService.getAutenticacao().getCurrentUser();
-                                // updateUI(user);
-                            }
-                        }
-                    });
+        Usuario usuario = new Usuario();
+        usuario.setEmail(txtEmail.getText().toString().trim());
+        usuario.setNome(txtNome.getText().toString().trim());
+        usuario.setSenha(txtSenha.getText().toString().trim());
+        usuario.setSenhaConfirmar(txtConfirmarSenha.getText().toString().trim());
+        String[] sMsg = new String[0];
+
+        UsuarioService usuarioService = new UsuarioService(this);
+        if(usuarioService.CadastrarUsuario(usuario,sMsg))
+        {
 
         }
-        catch (Exception ex)
+        else
         {
-            ex.printStackTrace();
+
         }
+
+
     }
 }
