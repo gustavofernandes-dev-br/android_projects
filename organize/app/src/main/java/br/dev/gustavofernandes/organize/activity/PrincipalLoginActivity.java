@@ -18,13 +18,18 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
+import com.google.firebase.auth.FirebaseAuthInvalidUserException;
+import com.google.firebase.auth.FirebaseAuthWeakPasswordException;
 import com.google.firebase.auth.FirebaseUser;
 
 import java.security.Principal;
 
 import br.dev.gustavofernandes.organize.PrincipalActivity;
 import br.dev.gustavofernandes.organize.R;
+import br.dev.gustavofernandes.organize.model.Usuario;
 import br.dev.gustavofernandes.organize.services.firebase.FirebaseService;
+import br.dev.gustavofernandes.organize.util.Ref;
 
 public class PrincipalLoginActivity extends AppCompatActivity {
 
@@ -73,7 +78,50 @@ public class PrincipalLoginActivity extends AppCompatActivity {
 
     public void FazerLogin(View view)
     {
-        startActivity(new Intent(this, PrincipalActivity.class));
-        finish();
+        txtAlerta.setVisibility(View.INVISIBLE);
+        Usuario usuario = new Usuario();
+        usuario.setSenha(txtSenha.getText().toString().trim());
+        usuario.setEmail(txtEmail.getText().toString().trim());
+        Ref<String> ref = new Ref("");
+        if(!usuario.ValidarLogin(ref))
+        {
+            txtAlerta.setText(ref.get());
+            txtAlerta.setVisibility(View.VISIBLE);
+            return;
+        }
+
+        FirebaseAuth auth = FirebaseService.getAutenticacao();
+        auth.signInWithEmailAndPassword(usuario.getEmail(), usuario.getSenha())
+            .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                @Override
+                public void onComplete(@NonNull Task<AuthResult> task) {
+                    if (task.isSuccessful()) {
+                        startActivity(new Intent(PrincipalLoginActivity.this, PrincipalActivity.class));
+                        finish();
+                    }
+                    else
+                    {
+                        try {
+                            throw task.getException();
+                        }
+                        catch (FirebaseAuthInvalidUserException e)
+                        {
+                            ref.set("Usuário não existe");
+                        }
+                        catch (FirebaseAuthInvalidCredentialsException e)
+                        {
+                            ref.set("Usuário ou senha inválidos");
+                        }
+                        catch (Exception e)
+                        {
+                            ref.set("Usuário não existe");
+                        }
+                        txtAlerta.setText(ref.get());
+                        txtAlerta.setVisibility(View.VISIBLE);
+
+                    }
+                }
+            });
+
     }
 }

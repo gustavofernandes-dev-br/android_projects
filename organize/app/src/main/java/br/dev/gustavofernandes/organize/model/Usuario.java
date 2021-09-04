@@ -2,6 +2,8 @@ package br.dev.gustavofernandes.organize.model;
 
 import androidx.annotation.Dimension;
 
+import br.dev.gustavofernandes.organize.util.Ref;
+
 public class Usuario {
     String Nome;
     String Email;
@@ -40,37 +42,35 @@ public class Usuario {
         SenhaConfirmar = senhaConfirmar;
     }
 
-    public boolean ValidarCadastro(String[] msg)
+    public boolean ValidarCadastro(Ref<String> mensagem)
     {
-        msg[0] = "";
+        mensagem.set("");
         if(Email.equals(""))
-            msg[0] = "E-mail inválido";
+            mensagem.set(" E-mail inválido");
 
         if(Nome.equals(""))
-            msg[0] += "\n Nome inválido";
+            mensagem.set(mensagem.get() + "\n Nome inválido");
 
         if(Senha.equals(""))
-            msg[0]  += "\n Senha inválida";
+            mensagem.set(mensagem.get() + "\n Senha inválida");
+        else if(SenhaConfirmar.equals(""))
+            mensagem.set(mensagem.get() + "\n Necessário confirmar a senha.");
+        else if(!Senha.equals(SenhaConfirmar))
+            mensagem.set(mensagem.get() + "\n As senhas não coincidem.");
 
-        if(SenhaConfirmar.equals(""))
-            msg[0]  += "\n Necessário confirmar a senha.";
-
-        if(Senha.equals(SenhaConfirmar))
-            msg[0]  += "\n As senhas não coincidem.";
-
-        return msg[0].equals("");
+        return mensagem.get().equals("");
     }
 
 
-    public boolean ValidarLogin(String[] msg)
+    public boolean ValidarLogin(Ref<String> mensagem)
     {
-        msg[0] = "";
+        mensagem.set("");
         if(Email.equals(""))
-            msg[0] = "E-mail inválido";
+            mensagem.set(" E-mail inválido");
 
         if(Senha.equals(""))
-            msg[0]  += "\n Senha inválida";
+            mensagem.set(mensagem.get() + "\n Senha inválida");
 
-        return msg[0].equals("");
+        return mensagem.equals("");
     }
 }

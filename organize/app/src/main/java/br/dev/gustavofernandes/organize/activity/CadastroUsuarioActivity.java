@@ -16,12 +16,18 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
+import com.google.firebase.auth.FirebaseAuthUserCollisionException;
+import com.google.firebase.auth.FirebaseAuthWeakPasswordException;
 import com.google.firebase.auth.FirebaseUser;
 
 import br.dev.gustavofernandes.organize.R;
 import br.dev.gustavofernandes.organize.model.Usuario;
 import br.dev.gustavofernandes.organize.services.api.UsuarioService;
 import br.dev.gustavofernandes.organize.services.firebase.FirebaseService;
+import br.dev.gustavofernandes.organize.util.Ref;
+import br.dev.gustavofernandes.organize.util.Variaveis;
 
 public class CadastroUsuarioActivity extends AppCompatActivity {
 
@@ -69,25 +75,65 @@ public class CadastroUsuarioActivity extends AppCompatActivity {
 
     }
 
-    public void Cadatrar(View view)
+    public void Cadastrar(View view)
     {
+        txtAlerta.setVisibility(View.INVISIBLE);
         Usuario usuario = new Usuario();
         usuario.setEmail(txtEmail.getText().toString().trim());
         usuario.setNome(txtNome.getText().toString().trim());
         usuario.setSenha(txtSenha.getText().toString().trim());
         usuario.setSenhaConfirmar(txtConfirmarSenha.getText().toString().trim());
-        String[] sMsg = new String[0];
-
-        UsuarioService usuarioService = new UsuarioService(this);
-        if(usuarioService.CadastrarUsuario(usuario,sMsg))
+        Ref<String> sRef = new Ref<String>("");
+        if(!usuario.ValidarCadastro(sRef))
         {
-
-        }
-        else
-        {
-
+            txtAlerta.setText(sRef.get());
+            txtAlerta.setVisibility(View.VISIBLE);
+            return;
         }
 
+        try {
+            FirebaseAuth auth = FirebaseService.getAutenticacao();
+            auth.createUserWithEmailAndPassword(usuario.getEmail(),usuario.getSenha())
+                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if(task.isSuccessful())
+                        {
+                            Toast.makeText(getApplicationContext(), "Usuario cadastrado com sucesso", Toast.LENGTH_SHORT).show();
+                            FirebaseUser user =  FirebaseService.getAutenticacao().getCurrentUser();
+                        }
+                        else
+                        {
+                            try {
+                                throw task.getException();
+                            }
+                            catch (FirebaseAuthWeakPasswordException e)
+                            {
+                                sRef.set("Digite uma senha mais forte.");
+                            }
+                            catch (FirebaseAuthInvalidCredentialsException e)
+                            {
+                                sRef.set("Digite um email válido.");
+                            }
+                            catch (FirebaseAuthUserCollisionException e)
+                            {
+                                sRef.set("Já existe um usuário com esse nome");
+                            }
+                            catch (Exception e)
+                            {
+                                sRef.set(e.getMessage());
+                            }
+                            txtAlerta.setText(sRef.get());
+                            txtAlerta.setVisibility(View.VISIBLE);
+                        }
+                    }
+                });
+
+        }
+        catch (Exception ex)
+        {
+            ex.printStackTrace();
+        }
 
     }
 }

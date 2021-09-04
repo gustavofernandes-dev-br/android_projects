@@ -104,7 +104,7 @@
             android:background="@drawable/botao_padrao"
             android:textColor="@color/white"
             android:text="Cadastrar"
-            android:onClick="Cadatrar"
+            android:onClick="Cadastrar"
              />
 
 

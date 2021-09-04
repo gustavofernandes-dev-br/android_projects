@@ -8,6 +8,7 @@ import androidx.annotation.NonNull;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.auth.FirebaseAuthWeakPasswordException;
@@ -17,6 +18,7 @@ import java.sql.Struct;
 
 import br.dev.gustavofernandes.organize.model.Usuario;
 import br.dev.gustavofernandes.organize.services.firebase.FirebaseService;
+import br.dev.gustavofernandes.organize.util.Ref;
 
 public class UsuarioService {
 
@@ -33,16 +35,17 @@ public class UsuarioService {
         return  true;
     }
 
-    public boolean CadastrarUsuario(Usuario usuario, String[] sMsg)
+    public boolean  CadastrarUsuario(Usuario usuario, Ref<String> mensagem)
     {
         final Boolean[] sRetorno = new Boolean[1];
 
-        if(!usuario.ValidarCadastro(sMsg))
+        if(!usuario.ValidarCadastro(mensagem))
             return false;
 
         try {
-             FirebaseService.getAutenticacao()
-                .createUserWithEmailAndPassword(usuario.getEmail(),usuario.getSenha())
+
+               FirebaseAuth auth = FirebaseService.getAutenticacao();
+               auth.createUserWithEmailAndPassword(usuario.getEmail(),usuario.getSenha())
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
@@ -52,6 +55,7 @@ public class UsuarioService {
                             FirebaseUser user =  FirebaseService.getAutenticacao().getCurrentUser();
                             sRetorno[0] = true;
                             // updateUI(user);
+
                         }
                         else
                         {
@@ -60,25 +64,25 @@ public class UsuarioService {
                             }
                             catch (FirebaseAuthWeakPasswordException e)
                             {
-                                sMsg[0] = "Digite uma senha mais forte.";
+                                mensagem.set("Digite uma senha mais forte.");
                             }
                             catch (FirebaseAuthInvalidCredentialsException e)
                             {
-                                sMsg[0] = "Digite um email válido.";
+                                mensagem.set("Digite um email válido.");
                             }
                             catch (FirebaseAuthUserCollisionException e)
                             {
-                                sMsg[0] = "Já existe um usuário com esse nome";
+                                mensagem.set("Já existe um usuário com esse nome");
                             }
                             catch (Exception e)
                             {
-                                sMsg[0] = e.getMessage();
+                                mensagem.set(e.getMessage());
                             }
                             sRetorno[0] = false;
                         }
                     }
                 });
-
+                return sRetorno[0];
         }
         catch (Exception ex)
         {
