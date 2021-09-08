@@ -4,102 +4,137 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.PrincipalLoginActivity"
     android:gravity="center"
+    android:orientation="vertical"
 
-    android:orientation="vertical">
-    <androidx.appcompat.widget.AppCompatImageView
-        android:background="@drawable/logo"
-        android:layout_width="250sp"
-        android:layout_marginBottom="30dp"
-        android:layout_height="90sp"/>
-    <TextView
-        android:text="Seja bem vindo!"
-        android:textSize="22dp"
-        android:textStyle="bold"
-        android:textColor="@color/PrimaryApp"
-        android:layout_width="wrap_content"
-        android:layout_marginBottom="30dp"
-        android:layout_height="wrap_content"/>
+    tools:context=".activity.PrincipalLoginActivity">
 
-    <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/login_txt_email"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/edittext_campo_padrao"
-        android:layout_margin="5dp"
-        android:drawableLeft="@drawable/ic_login_email_24"
-        android:drawablePadding="5dp"
-        android:hint="E-mail"
-        android:inputType="textEmailAddress"
-        android:padding="15dp" />
+        android:layout_height="match_parent">
 
-    <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/login_txt_senha"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/edittext_campo_padrao"
-        android:layout_margin="5dp"
-        android:drawableLeft="@drawable/ic_login_key_24"
-        android:drawablePadding="5dp"
-        android:hint="Senha"
-        android:inputType="textPassword"
-        android:padding="15dp" />
-    <Switch
-        android:id="@+id/login_sw_exibir_senha"
-        android:gravity="start"
-        android:layout_gravity="start"
-        android:layout_margin="15dp"
-        android:text="Exibir senha"
-        android:thumbTint="@color/switch_cor_thumb"
-        android:trackTint="@color/switch_cor_track"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-
-    <TextView
-        android:id="@+id/login_txt_alerta"
-        android:layout_margin="10dp"
-        android:minLines="2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Usuário ou senha invalidos"
-        android:textColor="@color/design_default_color_error"
-        android:visibility="invisible"
-        tools:visibility="visible"
-        />
-
-    <LinearLayout
-
-        android:layout_marginTop="15dp"
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="60dp">
-
-
-        <Button
-            android:id="@+id/login_btn_cadastrar"
-            android:onClick="NovoCadastro"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@drawable/botao_padrao2"
-            android:textColor="@color/PrimaryApp"
-            android:text="Cadastrar"
-            android:layout_weight="1"
-            android:layout_margin="5dp"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:orientation="vertical">
 
-            />
-        <Button
-            android:id="@+id/login_btn_entrar"
-            android:onClick="FazerLogin"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@drawable/botao_padrao"
-            android:textColor="@color/white"
-            android:text="Entrar"
-            android:layout_weight="1"
-            android:layout_margin="5dp"
-            />
-    </LinearLayout>
 
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="250sp"
+                android:layout_height="90sp"
+                android:layout_marginBottom="30dp"
+                android:background="@drawable/logo1" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="30dp"
+                android:text="Seja bem vindo!"
+                android:textColor="@color/PrimaryApp"
+                android:textSize="22dp"
+                android:textStyle="bold" />
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/login_txt_email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:background="@drawable/edittext_campo_padrao"
+                android:drawableLeft="@drawable/ic_login_email_24"
+                android:drawablePadding="5dp"
+                android:hint="E-mail"
+                android:inputType="textEmailAddress"
+                android:padding="15dp" />
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/login_txt_senha"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:background="@drawable/edittext_campo_padrao"
+                android:drawableLeft="@drawable/ic_login_key_24"
+                android:drawablePadding="5dp"
+                android:hint="Senha"
+                android:inputType="textPassword"
+                android:padding="15dp" />
+
+            <Switch
+                android:id="@+id/login_sw_exibir_senha"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:layout_margin="15dp"
+                android:gravity="start"
+                android:text="Exibir senha"
+                android:thumbTint="@color/switch_cor_thumb"
+                android:trackTint="@color/switch_cor_track" />
+
+            <TextView
+                android:id="@+id/login_txt_alerta"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:minLines="2"
+                android:text="Usuário ou senha invalidos"
+                android:textColor="@color/design_default_color_error"
+                android:visibility="invisible"
+                tools:visibility="visible" />
+
+            <LinearLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginTop="15dp"
+                android:orientation="horizontal">
+
+
+                <Button
+                    android:id="@+id/login_btn_cadastrar"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/botao_padrao2"
+                    android:onClick="NovoCadastro"
+                    android:text="Cadastrar"
+                    android:textColor="@color/PrimaryApp"
+
+                    />
+
+                <Button
+                    android:id="@+id/login_btn_entrar"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/botao_padrao"
+                    android:onClick="FazerLogin"
+                    android:text="Entrar"
+                    android:textColor="@color/white" />
+            </LinearLayout>
+
+
+
+            <Button
+                android:id="@+id/login_btn_entrar_google"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                android:background="@drawable/botao_padrao2"
+                android:drawableLeft="@drawable/google"
+                android:padding="15dp"
+
+                android:gravity="center"
+                android:onClick="FazerLoginGoogle"
+                android:text="Entrar com Google"
+
+                android:textColor="@color/PrimaryApp" >
+
+            </Button>
+        </LinearLayout>
+    </ScrollView>
 
 </LinearLayout>

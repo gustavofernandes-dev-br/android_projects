@@ -3,6 +3,7 @@ package br.dev.gustavofernandes.organize.activity;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.InputType;
 import android.view.View;
@@ -28,6 +29,7 @@ import br.dev.gustavofernandes.organize.services.api.UsuarioService;
 import br.dev.gustavofernandes.organize.services.firebase.FirebaseService;
 import br.dev.gustavofernandes.organize.util.Ref;
 import br.dev.gustavofernandes.organize.util.Variaveis;
+import br.dev.gustavofernandes.organize.util.io.SharedPreferencesUniversal;
 
 public class CadastroUsuarioActivity extends AppCompatActivity {
 
@@ -42,6 +44,8 @@ public class CadastroUsuarioActivity extends AppCompatActivity {
         setContentView(R.layout.activity_cadastro_usuario);
         CarregarControles();
         ConfigurarEventos();
+
+
     }
 
     private void ConfigurarEventos() {
@@ -101,6 +105,9 @@ public class CadastroUsuarioActivity extends AppCompatActivity {
                         {
                             Toast.makeText(getApplicationContext(), "Usuario cadastrado com sucesso", Toast.LENGTH_SHORT).show();
                             FirebaseUser user =  FirebaseService.getAutenticacao().getCurrentUser();
+                            SharedPreferencesUniversal sShared = new SharedPreferencesUniversal();
+                            sShared.GravaValor(getApplicationContext(), Variaveis.SharedGlobais.email,usuario.getEmail());
+                            finish();
                         }
                         else
                         {
