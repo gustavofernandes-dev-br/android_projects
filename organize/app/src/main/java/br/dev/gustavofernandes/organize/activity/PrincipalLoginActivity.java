@@ -1,9 +1,11 @@
 package br.dev.gustavofernandes.organize.activity;
 
 import android.app.Activity;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.InputType;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
@@ -13,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
@@ -73,7 +76,10 @@ public class PrincipalLoginActivity extends AppCompatActivity {
         super.onStart();
         // Check if user is signed in (non-null) and update UI accordingly.
         FirebaseUser currentUser =  FirebaseService.getAutenticacao().getCurrentUser();
+        //FirebaseService.getAutenticacao().signOut();
+        //currentUser = null;
        // updateUI(currentUser);
+
     }
 
     private void updateUI(FirebaseUser user) {
@@ -88,8 +94,30 @@ public class PrincipalLoginActivity extends AppCompatActivity {
             finish();
 
         } else {
+            //https://developer.android.com/guide/topics/ui/dialogs?hl=pt-br
 
         }
+    }
+
+    public void Mensagem()
+    {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Teste");
+        //builder.setView()
+        builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                // User clicked OK button
+            }
+        });
+        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                // User cancelled the dialog
+            }
+        });
+        AlertDialog dialog = builder.create();
+        dialog.show();
+
+
     }
 
     @Override
@@ -126,17 +154,19 @@ public class PrincipalLoginActivity extends AppCompatActivity {
 
     public void NovoCadastro(View view)
     {
+        Mensagem();
         startActivity(new Intent(this, CadastroUsuarioActivity.class));
     }
 
     public void FazerLoginGoogle(View view)
     {
+        //mSignInClient.signOut();
         Task<GoogleSignInAccount> task = mSignInClient.silentSignIn();
         if (task.isSuccessful()) {
             // There's an immediate result available
             GoogleSignInAccount account = task.getResult();
             if (account != null) {
-                //setupClientFromAccount(activity, account);
+                firebaseAuthWithGoogle(account.getIdToken());
             }
         }
         else

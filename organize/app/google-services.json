@@ -14,6 +14,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "703502307712-7969tgmbdtvmsjvdkved5nbkf1vkob0l.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "br.dev.gustavofernandes.organize",
+            "certificate_hash": "2f2fa7c6337f33618be9c117f02326b2d7c2c9bb"
+          }
+        },
+        {
           "client_id": "703502307712-ik0ki6anj54u6ncvtj15lsso6a35h7cs.apps.googleusercontent.com",
           "client_type": 3
         }
