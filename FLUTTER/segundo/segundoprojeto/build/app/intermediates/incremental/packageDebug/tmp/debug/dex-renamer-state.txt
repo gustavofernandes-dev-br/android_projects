@@ -1,0 +1,4 @@
+#Thu Oct 21 00:28:10 BRT 2021
+base.0=C\:\\GitGustavo\\ANDROID\\android_projects\\ALURA\\flutter\\segundo\\segundoprojeto\\build\\app\\intermediates\\dex\\debug\\mergeDexDebug\\classes.dex
+path.0=classes.dex
+renamed.0=classes.dex

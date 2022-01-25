@@ -1,0 +1,15 @@
+com/example/tarefas/activity_formulario_tarefa.java
+ com.example.tarefas.activity_formulario_tarefa
+com/example/tarefas/BuildConfig.java
+ com.example.tarefas.BuildConfig
+com/example/tarefas/dao/DaoTarefas.java
+ com.example.tarefas.dao.DaoTarefas
+com/example/tarefas/models/Tarefas.java
+ com.example.tarefas.models.Tarefas
+com/example/tarefas/adapters/TarefasAdapter.java
+ com.example.tarefas.adapters.TarefasAdapter
+com/example/tarefas/activity_principal_tarefa.java
+ com.example.tarefas.activity_principal_tarefa
+ com.example.tarefas.activity_principal_tarefa$1
+ com.example.tarefas.activity_principal_tarefa$2
+ com.example.tarefas.activity_principal_tarefa$3
